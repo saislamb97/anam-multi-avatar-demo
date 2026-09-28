@@ -1,0 +1,309 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #edf1f8;
+  color: #152138;
+  font: 16px system-ui, sans-serif;
+}
+
+main {
+  max-width: 1180px;
+  margin: 28px auto;
+  padding: 0 18px;
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.page-head p {
+  margin: 5px 0;
+  color: #5c6c84;
+}
+
+.toolbar,
+form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.docs-link {
+  color: #2044a1;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.docs-link:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #2159dc;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#stop {
+  background: #31435f;
+}
+
+.stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 390px;
+  aspect-ratio: 16 / 8.2;
+  overflow: hidden;
+  border-radius: 20px;
+  background: radial-gradient(
+    ellipse at 50% 25%,
+    #5d6f9d 0%,
+    #26385e 43%,
+    #101a30 90%
+  );
+  box-shadow: 0 22px 48px #14244333;
+}
+
+.stage-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    #668ade27,
+    transparent 40%,
+    #8c77da24
+  );
+}
+
+.stage-title {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  z-index: 5;
+  color: #d5e5ffba;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+}
+
+.performer {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.performer video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  object-fit: cover;
+}
+
+.performer-a video {
+  object-position: 55% center;
+}
+
+.performer-b video {
+  object-position: 45% center;
+}
+
+.performer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #101a3045 0%,
+    transparent 22%,
+    transparent 65%,
+    #101a30b8 100%
+  );
+  pointer-events: none;
+}
+
+.performer-a {
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 80%,
+    transparent 100%
+  );
+}
+
+.performer-b {
+  mask-image: linear-gradient(
+    to left,
+    #000 0%,
+    #000 80%,
+    transparent 100%
+  );
+}
+
+.nameplate {
+  position: absolute;
+  bottom: 26px;
+  left: 24px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 650;
+  text-shadow: 0 1px 8px #000;
+}
+
+.performer-b .nameplate {
+  right: 24px;
+  left: auto;
+}
+
+.nameplate small {
+  color: #d6dfef;
+  font-weight: 400;
+}
+
+.light {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8d9bad;
+  box-shadow: 0 0 0 3px #ffffff24;
+}
+
+.light.on {
+  background: #49e9ae;
+  box-shadow: 0 0 12px #49e9ae;
+}
+
+.stage-floor {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 16px;
+  background: linear-gradient(90deg, #405987, #6179ab, #405987);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.panel {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #d9e0ec;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 24px #1424430d;
+}
+
+#global-status {
+  display: block;
+  margin-bottom: 14px;
+  color: #53647c;
+}
+
+#new-conversation {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #edf2ff;
+  color: #2044a1;
+}
+
+form {
+  flex-wrap: wrap;
+}
+
+input {
+  flex: 1;
+  min-width: 220px;
+}
+
+input,
+select {
+  padding: 11px;
+  border: 1px solid #bdc9da;
+  border-radius: 8px;
+  font: inherit;
+}
+
+#history {
+  height: 250px;
+  max-height: 250px;
+  min-height: 60px;
+  margin-top: 16px;
+  padding: 8px 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-top: 1px solid #e2e8f0;
+  scrollbar-gutter: stable;
+  white-space: pre-wrap;
+}
+
+#history p {
+  padding: 6px 0 12px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+@media (max-width: 700px) {
+  .page-head {
+    display: block;
+  }
+
+  .toolbar {
+    margin-top: 16px;
+  }
+
+  .stage {
+    min-height: 300px;
+    aspect-ratio: auto;
+  }
+
+  .nameplate {
+    bottom: 20px;
+    left: 10px;
+    flex-wrap: wrap;
+  }
+
+  .performer-b .nameplate {
+    right: 10px;
+  }
+
+  .nameplate small {
+    width: 100%;
+    margin-left: 16px;
+  }
+
+  .stage-title {
+    left: 12px;
+  }
+}

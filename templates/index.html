@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Two Anam Avatars</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main>
+      <header class="page-head">
+        <div>
+          <h1>Conversation stage</h1>
+          <p>Two avatars and you in one shared conversation.</p>
+        </div>
+        <div class="toolbar">
+          <a class="docs-link" href="/docs" target="_blank" rel="noopener noreferrer">API docs</a>
+          <button id="start">Start both avatars</button>
+          <button id="stop" disabled>Stop both</button>
+        </div>
+      </header>
+
+      <section class="stage" aria-label="Avatar stage">
+        <div class="stage-glow"></div>
+        <div class="stage-title">LIVE CONVERSATION</div>
+
+        <div class="performer performer-a">
+          <video id="video-a" autoplay playsinline></video>
+          <div class="nameplate">
+            <span class="light" id="light-a"></span>
+            <span id="name-a">Avatar A</span>
+            <small id="status-a">Disconnected</small>
+          </div>
+        </div>
+
+        <div class="performer performer-b">
+          <video id="video-b" autoplay playsinline></video>
+          <div class="nameplate">
+            <span class="light" id="light-b"></span>
+            <span id="name-b">Avatar B</span>
+            <small id="status-b">Disconnected</small>
+          </div>
+        </div>
+
+        <div class="stage-floor"></div>
+      </section>
+
+      <div class="panel">
+        <span id="global-status" role="status">Ready</span>
+        <button id="new-conversation" type="button">New conversation</button>
+
+        <form id="chat-form">
+          <label for="avatar">Ask</label>
+          <select id="avatar">
+            <option value="a">Avatar A</option>
+            <option value="b">Avatar B</option>
+            <option value="both">Both avatars</option>
+          </select>
+          <input
+            id="message"
+            required
+            maxlength="4000"
+            placeholder="Type your question..."
+            autocomplete="off"
+            aria-label="Message"
+          >
+          <button id="send" disabled>Send</button>
+        </form>
+
+        <div id="history" aria-label="Conversation history" aria-live="polite"></div>
+      </div>
+    </main>
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>
